@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 17</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Números Primos</h1>
+        <form class="flex">
+            <div class="input-group flex">
+                <label for="num">Números de primos</label>
+                <input type="number" name="num" id="num" placeholder="Limite de números primos a mostrar" required>
+            </div>
+            <button type="button" id="btn">Mostrar Resultado</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+            <button type="button" id="reset">Limpar</button>
+        </div>
+    </main>
+
+    <script>
+        const numInput = document.getElementById("num")
+
+        function isPrime(num) {
+            if (num <= 1) return false
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false
+            }
+            return true
+        }
+
+        btn.addEventListener("click", () => {
+            const limit = parseInt(numInput.value)
+            let count = 0
+            let number = 2
+            while (count < limit) {
+                if (isPrime(number)) {
+                    res.innerHTML += `<p>${number}</p>`
+                    count++
+                }
+                number++
+            }
+        })
+    </script>
+</body>
+</html>

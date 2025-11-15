@@ -5,7 +5,7 @@ const prompt = createInterface({
     output: process.stdout
 })
 
-async function askQuestion(ques) {
+function askQuestion(ques) {
     return new Promise(resolve => {
         prompt.question(ques, (answer) => resolve(answer)) 
     })
