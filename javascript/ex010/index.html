@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 10</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Média Dos Valores Digitados</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="num">Escreva um número</label>
+                <input type="number" name="num" id="num" placeholder="Escreva um núemro negativo para parar o programa" required>
+            </div>
+            <button type="submit" id="btn" class="btn">Adicionar</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+            <button type="button" id="reset">Limpar</button>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+        const array = []
+
+        form.addEventListener("submit", (ev) => {
+            ev.preventDefault()
+            const num = Number(document.getElementById("num").value)
+            
+            if (num < 0) {
+                mostrarDiv()
+                const soma = array.reduce((acc, val) => acc + val, 0)
+                const media = soma / array.length
+                res.innerHTML = `<p>A média dos valores digitados é ${media.toFixed(2)}</p>`
+                form.reset()
+                return
+            }
+
+            array.push(num)
+            form.reset()
+        })
+
+    </script>
+</body>
+</html>

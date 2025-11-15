@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        main div.res {
+            display: block;
+        }
+    </style>
+    <title>Exercício 8</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Sequência de Fibonnaci</h1>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        const res = document.getElementById("mostrarRes")
+
+        function mostrar(qtd) {
+            for (let num = 1000; num < 10000; num++) {
+                const A = parseInt(num /  100)
+                const B = num % 100
+                
+                if ((A + B) ** 2 === num) {
+                    res.innerHTML += `${num} <br>`
+                }
+            }
+        }
+
+        mostrar(15)
+    </script>
+</body>
+</html>

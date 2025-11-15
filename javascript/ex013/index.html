@@ -5,22 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="../style/main.js" defer></script>
     <link rel="stylesheet" href="../style/style.css">
-    <title>Exercício 17</title>
+    <title>Exercício 13</title>
 </head>
 <body class="flex">
     <main>
-        <h1>Número Primos</h1>
+        <h1>Abreviar Nomes</h1>
         <form name="form" class="flex">
             <div class="input-group flex">
-                <label for="num">Números de primos</label>
-                <input type="number" name="num" id="num" placeholder="Limite de números primos a mostrar" required>
+                <label for="name">Insira o seu nome</label>
+                <input type="text" name="name" id="name" placeholder="Escreva o seu nome completo" required>
             </div>
             <button type="submit" id="btn" class="btn">Mostrar Resultado</button>
         </form>
         <div class="res">
             <h2>Resultado</h2>
             <div id="mostrarRes"></div>
-            <button type="button" id="reset">Limpar</button>
         </div>
     </main>
 
@@ -29,33 +28,31 @@
 
         const form = document.forms["form"]
         const res = document.getElementById("mostrarRes")
-        const numInput = document.getElementById("num")
 
-        function isPrime(num) {
-            if (num <= 1) return false
-            for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
-                if (num % i === 0) return false
-            }
-            return true
-        }
+        function abreviarNome() {
+            const nomeCompleto = document.getElementById("name").value
+            const naoAbreviar = ["de", "do", "da", "das", "dos"]
 
-        function main() {
-            const limit = parseInt(numInput.value)
-            let number = 2
-            res.textContent = ""
-            res.innerHTML = "<h3>Números Primos entre 1 e " + limit + ":</h3>"
-            while (number <= limit) {
-                if (isPrime(number)) {
-                    res.innerHTML += `<p>${number}</p>`
+            const palavras = nomeCompleto.trim().split(/\s+/)
+            const resultado = []
+
+            for (let palavra of palavras) {
+                const minuscula = palavra.toLowerCase()
+
+                if (naoAbreviar.includes(minuscula)) {
+                    resultado.push(minuscula)
+                } else {
+                    resultado.push(palavra[0].toUpperCase() + ".")
                 }
-                number++
             }
-        }
 
+            res.innerHTML = `<p>Nome abreviado: ${resultado.join(" ")}</p>`
+        }
+        
         form.addEventListener("submit", (ev) => {
             ev.preventDefault()
             mostrarDiv()
-            main()
+            abreviarNome()
         })
 
     </script>

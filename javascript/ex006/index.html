@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 6</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Somar Números</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="symbol">Digite um número extenso</label>
+                <input type="number" name="symbol" id="symbol" placeholder="Digite um número como 223123" required>
+            </div>
+            <button type="submit" id="btn" class="btn">Mostrar Resultado</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+
+        function somar() {
+            const num = form.querySelector('input[type="number"]').value
+            const nums = Array.from(num, Number)
+            const soma = nums.reduce((a, b) => a + b, 0)
+            res.innerHTML = `Soma: ${soma}`
+        }
+
+        form.addEventListener("submit", (ev) => {
+            ev.preventDefault()
+            mostrarDiv()
+            somar()
+        })
+
+    </script>
+</body>
+</html>

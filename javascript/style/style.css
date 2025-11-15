@@ -17,13 +17,14 @@
 body {
     min-height: 100vh;
     width: 100%;
+    padding: 20px;
     font: 16px Verdana, Geneva, Tahoma, sans-serif;
     background: #481248;
 }
 
 main {
     flex: 0 1 600px;
-    padding: 20px;
+    padding: 40px 20px;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px #00000071;
@@ -58,11 +59,11 @@ form .input-group.flex {
     outline: none;
 }
 
-[type="button"] {
+.btn {
     transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
-form [type="button"] {
+form .btn {
     cursor: pointer;
     padding: 10px 15px;
     color: #fff;
@@ -71,11 +72,11 @@ form [type="button"] {
     border-radius: 4px;
 }
 
-[type="button"]:hover {
+.btn:hover {
     transform: scale(1.05);
 }
 
-[type="button"]:active {
+.btn:active {
     transform: scale(1);
 }
 
@@ -83,10 +84,9 @@ form [type="button"] {
     position: relative;
     height: auto;
     display: none;
-    min-height: 200px;
+    min-height: 60px;
     margin-top: 20px;
     padding: 15px;
-    padding-bottom: 40px;
     border: 1px solid green;
     border-radius: 8px;
 }
@@ -111,4 +111,8 @@ form [type="button"] {
     background-color: #f02020;
     border: none;
     border-radius: 4px;
+}
+
+.res li {
+    list-style-position: inside;
 }

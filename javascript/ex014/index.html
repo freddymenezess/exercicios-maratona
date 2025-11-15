@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 14</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Verificar Palavras</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="name">Insira uma palavra</label>
+                <input type="text" name="name" id="name" placeholder="Escreva uma palavra" required>
+            </div>
+            <div class="input-group flex">
+                <label for="name">Insira uma palavra</label>
+                <input type="text" name="name" id="name" placeholder="Escreva outra diferente ou igual à anterior" required>
+            </div>
+            <button type="submit" id="btn" class="btn">Mostrar Resultado</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+        
+        function main() {
+            const palavra1 = form["name"][0].value.trim()
+            const palavra2 = form["name"][1].value.trim()
+
+            if (palavra1 === palavra2) {
+                res.innerHTML = `As palavras são iguais.`
+            } else {
+                palavra1.length > palavra2.length ?
+                res.innerHTML = `A palavra "${palavra1}" é maior que a palavra "${palavra2}".` :
+                palavra1.length === palavra2.length ?
+                res.innerHTML = `As palavras "${palavra1}" e "${palavra2}" têm o mesmo tamanho.` :
+                res.innerHTML = `A palavra "${palavra2}" é maior que a palavra "${palavra1}".`
+
+                palavra1.includes(palavra2) ?
+                res.innerHTML += `<br>A palavra "${palavra1}" contém a palavra "${palavra2}".` :
+                res.innerHTML += `<br>A palavra "${palavra1}" não contém a palavra "${palavra2}".`
+            }
+        }
+
+        form.addEventListener("submit", (ev) => {
+            ev.preventDefault()
+            mostrarDiv()
+            main()
+        })
+
+    </script>
+</body>
+</html>

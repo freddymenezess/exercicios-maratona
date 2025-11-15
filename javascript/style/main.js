@@ -1,9 +1,16 @@
-const btn = document.getElementById("btn")
-const btnReset = document.getElementById("reset")
-const res = document.getElementById("mostrarRes")
+const form = document.forms["form"]
+const globalBtn = document.getElementById("btn")
+const globalBtnReset = document.getElementById("reset")
+const globalDivRes = document.querySelector(".res")
+const globalRes = document.getElementById("mostrarRes")
 
-console.log(btn, btnReset, res)
+function mostrarDiv() {
+    const currentStyle = getComputedStyle(globalDivRes).display
+    if (currentStyle === "none") {
+        globalDivRes.style.display = "block" 
+    }
+}
 
-btn.addEventListener("click", () => res.style.display === "none" ? "block" : null)
-btnReset.addEventListener("click", () => res.textContent = "")
+if (globalBtnReset) globalBtnReset.addEventListener("click", () => globalRes.textContent = "")
 
+export default mostrarDiv

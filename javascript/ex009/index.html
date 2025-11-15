@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        #hide {
+            opacity: 0;
+        }
+    </style>
+    <title>Exercício 9</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Medindo Reflexos</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex" id="hide">
+                <label for="num">Escreva o número aleatório</label>
+                <input type="number" name="num" id="num" placeholder="Escreva o número gerado aleatóriamente" >
+            </div>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+        const inputGroup = document.getElementById("hide")
+        const text = document.querySelector("main h1")
+
+        const rand = Math.ceil(Math.random() * 4000) + 1000
+        const randNum = Math.ceil(Math.random() * 80)
+        let start, end
+
+        function mostrarResultado() {
+            end = Date.now()
+            const timeDiff = (end - start) / 1000
+            const userNum = Number(document.getElementById("num").value)
+
+            if (userNum === randNum) {
+                res.innerHTML = `Você acertou o número ${randNum}!<br>
+                Seu tempo de reação foi de ${timeDiff} segundos.`
+            } else {
+                res.innerHTML = `Número incorreto! O número era ${randNum}.<br>
+                Seu tempo de reação foi de ${timeDiff} segundos.`
+            }
+        }
+
+        setTimeout(() => {
+            text.textContent = "Agora! " + randNum 
+            start = Date.now()
+            inputGroup.style.opacity = "1"
+        }, rand)
+
+        form.addEventListener("submit", (ev) => {
+            ev.preventDefault()
+            mostrarDiv()
+            mostrarResultado()
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 1</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Conversor de Tempo</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="num">Tempo em segundos</label>
+                <input type="number" name="num" id="num" placeholder="Digite um tempo em segundos" required>
+            </div>
+            <button type="submit" id="btn" class="btn">Mostrar Resultado</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module">
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+       
+        function mostrarConversao() {
+            const segundos = Number(document.getElementById("num").value)
+            const horas = Math.floor(segundos / 3600)
+            const minutos = Math.floor(segundos / 60)
+
+            res.innerHTML = `<p>${segundos} milissegundos equivalem a:</p>
+            <ul>
+                <li>${horas} horas</li>
+                <li>${minutos} minutos</li>
+                <li>${segundos} segundos</li>
+            </ul>`
+        }
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault()
+            mostrarDiv()
+            mostrarConversao()
+        })
+
+    </script>
+</body>
+</html>

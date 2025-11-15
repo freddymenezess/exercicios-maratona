@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 4</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Maior, Menor e Mediano</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="num">Primeiro número</label>
+                <input type="number" name="num" id="num" placeholder="Digite um número" required>
+            </div>
+            <div class="input-group flex">
+                <label for="num">Segundo número</label>
+                <input type="number" name="num" id="num2" placeholder="Digite um número" required>
+            </div>
+            <div class="input-group flex">
+                <label for="num">Terceiro número</label>
+                <input type="number" name="num" id="num3" placeholder="Digite um número" required>
+            </div>
+            <button type="submit" id="btn" class="btn">Mostrar Resultado</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+        
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+
+        function showNums(num) {
+            const inputs = document.getElementsByName("num").values()
+            const numbs = Array.from(inputs.map(input => Number(input.value)))
+            const sortedNumbs = [...numbs].sort((a, b) => a - b)
+
+            res.innerHTML = `
+                    <p>Maior número: <strong>${sortedNumbs[2]}</strong></p>
+                    <p>Menor número: <strong>${sortedNumbs[0]}</strong></p>
+                    <p>Mediano: <strong>${sortedNumbs[1]}</strong></p
+                `
+        }
+
+        form.addEventListener("submit", (ev) => {
+            ev.preventDefault()
+            mostrarDiv()
+            showNums()
+        })
+
+    </script>
+</body>
+</html>

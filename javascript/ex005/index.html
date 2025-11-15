@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 5</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Operar Números</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="symbol">Símbolo da opração</label>
+                <input type="text" name="symbol" id="symbol" placeholder="Escreva o símbol da operação (+, -, * ou /)" required>
+            </div>
+            <div class="input-group flex">
+                <label for="num">Número</label>
+                <input type="number" name="num" id="num" placeholder="Digite um número para operar" required>
+            </div>
+            <div class="input-group flex">
+                <label for="num2">Número</label>
+                <input type="number" name="num" id="num2" placeholder="Digite um número para operar" required>
+            </div>
+            <button type="submit" id="btn" class="btn">Mostrar Resultado</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+
+        function operar() {
+            const symbol = form["symbol"].value
+            const nums = Array.from(form.querySelectorAll('input[type="number"]')).map(input => Number(input.value))
+
+            switch (symbol) {
+                case "+":
+                    res.innerHTML = `Soma: ${nums[0] + nums[1]}`
+                    break
+                
+                case "-":
+                    res.innerHTML = `Subtração: ${nums[0] - nums[1]}`
+                    break
+
+                case "*":
+                    res.innerHTML = `Multiplicação: ${nums[0] * nums[1]}`
+                    break
+
+                case "/":
+                    res.innerHTML = `Divisão: ${nums[0] / nums[1]}`
+                    break
+
+                default:
+                    res.innerHTML = "Símbolo inválido! Por favor, use +, -, * ou /."
+            }
+        }
+
+        form.addEventListener("submit", (ev) => {
+            ev.preventDefault()
+            mostrarDiv()
+            operar()
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 12</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Números Menores</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="num">Insira dez números</label>
+                <input type="text" name="num" id="num" placeholder="Escreva dez números separados por espaços" required>
+            </div>
+            <button type="button" id="btn" class="btn">Adicionar</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+        const button = document.getElementById("btn")
+        const input = document.getElementById("num")
+        const label = form.querySelector("label")
+        let array = []
+
+        button.addEventListener("click", () => {
+            if (button.getAttribute("type") === "submit") return
+            
+            const numInput = document.getElementById("num")
+            array = numInput.value.split(/\s+/).map(Number)
+
+            if (array.length !== 10) {
+                alert("Por favor, insira exatamente dez números.")
+                return
+            }
+
+            button.setAttribute("type", "submit")
+            input.setAttribute("placeholder", "Adicione mais um número para comparação")
+            input.value = ""
+            label.textContent = "Insira mais um número"
+        })
+
+        form.addEventListener("submit", (ev) => {
+            ev.preventDefault()
+            mostrarDiv()
+            
+            const num = Number(input.value)
+            const menores = array.filter(n => n < num)
+            res.innerHTML = `<p>Números menores que ${num}: ${menores.join(", ")}</p>`
+        })
+
+    </script>
+</body>
+</html>

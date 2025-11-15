@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 2</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Calcular Média</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="ladoA">Primeiro lado</label>
+                <input type="number" name="num" id="ladoA" placeholder="Digite um valor para um lado do triângulo" required>
+            </div>
+            <div class="input-group flex">
+                <label for="num2">Segundo lado</label>
+                <input type="number" name="num" id="ladoB" placeholder="Digite um valor para um lado do triângulo" required>
+            </div>
+            <div class="input-group flex">
+                <label for="ladoC">Terceiro lado</label>
+                <input type="number" name="num" id="ladoC" placeholder="Digite um valor para um lado do triângulo" required>
+            </div>
+            <button type="button" id="btn" class="btn">Mostrar Resultado</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+       
+        function verificarTriangulo() {
+            const ladoA = Number(document.getElementsByName("num")[0].value)
+            const ladoB = Number(document.getElementsByName("num")[1].value)
+            const ladoC = Number(document.getElementsByName("num")[2].value)
+            const media = (ladoA + ladoB + ladoC) / 3
+
+            if (
+                ladoA + ladoB > ladoC && 
+                ladoA + ladoC > ladoB && 
+                ladoB + ladoC > ladoA
+                ) {
+
+                if (ladoA === ladoB && ladoB === ladoC) {
+                   res.innerHTML = `<p>Esses lados formam um triângulo equilátero.</p>`
+                } else if (ladoA === ladoB || ladoA === ladoC || ladoB === ladoC) {
+                    res.innerHTML = `<p>Esses lados formam um triângulo isósceles.</p>`
+                } else {
+                    res.innerHTML = `<p>Esses lados formam um triângulo escaleno.</p>`
+                }
+                    
+            } else {
+                res.innerHTML = `<p>Esses lados não formam um triângulo.</p>`
+            }
+        }
+
+        button.addEventListener("click", verificarTriangulo)
+        form.addEventListener("submit", (event) => {
+            event.preventDefault()
+            mostrarDiv()
+            verificarTriangulo()
+        })
+
+    </script>
+</body>
+</html>
