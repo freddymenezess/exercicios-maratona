@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 19</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Características De Uma String</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="text">Palavra ou frase</label>
+                <input type="text" name="text" id="text" placeholder="Digite uma frase ou palavra" required>
+            </div>
+            <button type="submit" id="btn" class="btn">Mostrar Resultado</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+            <button type="button" id="reset">Limpar</button>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+        
+        function main() {
+            let countVogais = 0
+            let countDigitos = 0
+            const vogais = "aeiou"
+            const digitos = "0123456789"
+            const string = form["text"].value.toLowerCase()
+            const reversedString = string.split("").reverse().join("")
+
+            for (let char of string) {
+                if (vogais.includes(char)) countVogais++
+                if (digitos.includes(char)) countDigitos++
+            }
+
+            res.innerHTML = `
+                <p>Número de caracteres: ${string.length}</p>
+                <p>Palavra em minúscula: ${string}</p>
+                <p>Número de vogais: ${countVogais}</p>
+                <p>Número de dígitos: ${countDigitos}</p>
+            `
+
+            string.startsWith("uni") ? 
+                res.innerHTML += `<p>A palavra começa com "uni"</p>` : null
+
+            string.endsWith("rio") ? 
+                res.innerHTML +=  `<p>A palavra termina com "rio"</p>` : null
+
+
+            if (string === reversedString) {
+                res.innerHTML += `<p>A palavra é um palíndromo</p>`
+            }
+        }
+
+        form.addEventListener("submit", (ev) => {
+            ev.preventDefault()
+            mostrarDiv()
+            main()
+        })
+
+    </script>
+</body>
+</html>

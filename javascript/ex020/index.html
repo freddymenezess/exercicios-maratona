@@ -10,11 +10,11 @@
             display: block;
         }
     </style>
-    <title>Exercício 14</title>
+    <title>Exercício 20</title>
 </head>
 <body class="flex">
     <main>
-        <h1>Taxa De Crescimento</h1>
+        <h1>Mostrar Números</h1>
         <div class="res">
             <h2>Resultado</h2>
             <div id="mostrarRes"></div>
@@ -23,18 +23,12 @@
 
     <script type="module" defer>
         const res = document.getElementById("mostrarRes")
+        const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         
-        let A = 80000
-        let B = 200000
-        let anos = 0
+        numeros.forEach(num => {
+            res.innerHTML += `<p>${num}, ${numeros.join(" ")}</p>`
+        })
 
-        while (A < B) {
-            A += A * 0.03
-            B += B * 0.015
-            anos++
-        }
-
-        res.innerHTML = `Serão necessários ${anos} anos para que a população A ultrapasse ou iguale a população B.`
     </script>
 </body>
 </html>

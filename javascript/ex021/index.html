@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 17</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Procurar Nomes</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="name">Nome</label>
+                <input type="text" name="name" id="name" placeholder="Insira um nome" required>
+            </div>
+            <div class="buttons flex">
+                <button type="button" id="btn" class="btn">Adicionar</button>
+            </div>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+        const btn = document.getElementById("btn")
+        const input = form["name"]
+        const nomes = []
+
+        function searchName() {
+            const nameToSearch = form["name"].value
+            const found = nomes.includes(nameToSearch.toLowerCase())
+
+            if (found) {
+                mostrarDiv()
+                res.innerHTML = `<p>O nome <strong>${nameToSearch.charAt(0).toUpperCase() + nameToSearch.slice(1)}</strong> foi encontrado na lista.</p>`
+            } else {
+                mostrarDiv()
+                res.innerHTML = `<p>O nome <strong>${nameToSearch.charAt(0).toUpperCase() + nameToSearch.slice(1)}</strong> não foi encontrado na lista.</p>`
+            }
+
+            input.value = ""
+            input.focus()
+        }
+
+        function main() {
+            const name = form["name"].value
+            nomes.push(name.toLowerCase())
+            input.value = ""
+            input.focus()
+
+            if (nomes.length < 10) {
+                input.setAttribute("placeholder", `Você pode adicionar mais ${10 - nomes.length} nome(s)`)
+            } else if (nomes.length === 3) {
+                input.setAttribute("placeholder", "Digite um nome para pesquisar")
+            }
+        }
+
+        btn.addEventListener("click", () => {
+            if (nomes.length < 10) {
+                main()
+            } else {
+                searchName()
+            }
+        })
+
+    </script>
+</body>
+</html>

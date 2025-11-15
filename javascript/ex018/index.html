@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 18</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Nomes Aleatórios</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="tabuada">Número da tuabada</label>
+                <input type="text" name="tabuada" id="tabuada" placeholder="Diga de qual número quer a tabuada" required>
+            </div>
+            <div class="input-group flex">
+                <label for="num">Início</label>
+                <input type="number" name="start" id="start" placeholder="Onde deve iniciar a multiplicar" required>
+            </div>
+            <div class="input-group flex">
+                <label for="num2">Fim</label>
+                <input type="number" name="end" id="end" placeholder="Onde deve terminar a multiplição" required>
+            </div>
+            <button type="submit" id="btn" class="btn">Mostrar Resultado</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+            <button type="button" id="reset">Limpar</button>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+        
+        function main() {
+            const tabuada = Number(form["tabuada"].value)
+            const start = Number(form["start"].value)
+            const end = Number(form["end"].value)
+            res.innerHTML = ""
+
+            if (start > end) {
+                res.innerHTML = `<p class="error">Erro: O valor de início não pode ser maior que o valor de fim.</p>`
+                return
+            }
+
+            for (let i = start; i <= end; i++) {
+                const resultado = tabuada * i
+                res.innerHTML += `<p>${tabuada} x ${i} = ${resultado}</p>`
+            }
+        }
+
+        form.addEventListener("submit", (ev) => {
+            ev.preventDefault()
+            mostrarDiv()
+            main()
+        })
+
+    </script>
+</body>
+</html>

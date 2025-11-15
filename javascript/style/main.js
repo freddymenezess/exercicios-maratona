@@ -11,6 +11,10 @@ function mostrarDiv() {
     }
 }
 
-if (globalBtnReset) globalBtnReset.addEventListener("click", () => globalRes.textContent = "")
+if (globalBtnReset) globalBtnReset.addEventListener("click", () => {
+    globalRes.textContent = ""
+    globalDivRes.style.display = "none"
+    form.reset()
+})
 
 export default mostrarDiv
