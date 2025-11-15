@@ -59,11 +59,20 @@ form .input-group.flex {
     outline: none;
 }
 
-.btn {
+.buttons {
+    width: 100%;
+}
+
+.btn, [type="button"] {
     transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
-form .btn {
+form .buttons button[type="button"] {
+    background-color: #007BFF;
+}
+
+form .btn, 
+form .buttons [type="button"] {
     cursor: pointer;
     padding: 10px 15px;
     color: #fff;
@@ -72,11 +81,13 @@ form .btn {
     border-radius: 4px;
 }
 
-.btn:hover {
+.btn:hover,
+.buttons [type="button"]:hover {
     transform: scale(1.05);
 }
 
-.btn:active {
+.btn:active,
+.buttons [type="button"]:active {
     transform: scale(1);
 }
 

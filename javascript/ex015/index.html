@@ -5,22 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="../style/main.js" defer></script>
     <link rel="stylesheet" href="../style/style.css">
-    <title>Exercício 17</title>
+    <title>Exercício 15</title>
 </head>
 <body class="flex">
     <main>
-        <h1>Número Primos</h1>
+        <h1>Nomes Aleatórios</h1>
         <form name="form" class="flex">
             <div class="input-group flex">
-                <label for="num">Números de primos</label>
-                <input type="number" name="num" id="num" placeholder="Limite de números primos a mostrar" required>
+                <label for="name">Escreva um nome</label>
+                <input type="text" name="name" id="name" placeholder="Digite um nome aleatório" required>
             </div>
-            <button type="submit" id="btn" class="btn">Mostrar Resultado</button>
+            <div class="buttons flex">
+                <button type="submit" id="btn" class="btn">Mostrar Resultado</button>
+                <button type="button">Adicionar</button>
+            </div>
         </form>
         <div class="res">
             <h2>Resultado</h2>
             <div id="mostrarRes"></div>
-            <button type="button" id="reset">Limpar</button>
         </div>
     </main>
 
@@ -29,28 +31,25 @@
 
         const form = document.forms["form"]
         const res = document.getElementById("mostrarRes")
-        const numInput = document.getElementById("num")
-
-        function isPrime(num) {
-            if (num <= 1) return false
-            for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
-                if (num % i === 0) return false
-            }
-            return true
+        const buttonAdd = document.querySelector(".buttons button[type='button']")
+        const input = form["name"]
+        const arrayNomes = []
+        
+        function adicionarNome() {
+            const nome = form["name"].value
+            arrayNomes.push(nome)
         }
 
         function main() {
-            const limit = parseInt(numInput.value)
-            let number = 2
-            res.textContent = ""
-            res.innerHTML = "<h3>Números Primos entre 1 e " + limit + ":</h3>"
-            while (number <= limit) {
-                if (isPrime(number)) {
-                    res.innerHTML += `<p>${number}</p>`
-                }
-                number++
-            }
+            res.innerHTML = `Nomes ordenados alfabeticamente: ${arrayNomes.sort((a, b) => a.localeCompare(b, "pt")).join(", ")}`
         }
+
+        buttonAdd.addEventListener("click", () => {
+            adicionarNome()
+            form["name"].value = ""
+            form["name"].focus()
+            input.required = arrayNomes.length === 0
+        })
 
         form.addEventListener("submit", (ev) => {
             ev.preventDefault()

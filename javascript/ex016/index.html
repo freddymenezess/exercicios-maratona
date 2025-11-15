@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 14</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Taxa De Crescimento</h1>
+        <div class="res" style="display: block;">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        const res = document.getElementById("mostrarRes")
+        
+        let A = 80000
+        let B = 200000
+        let anos = 0
+
+        while (A < B) {
+            A += A * 0.03
+            B += B * 0.015
+            anos++
+        }
+
+        res.innerHTML = `Serão necessários ${anos} anos para que a população A ultrapasse ou iguale a população B.`
+    </script>
+</body>
+</html>
