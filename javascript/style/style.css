@@ -127,3 +127,9 @@ form .buttons [type="button"] {
 .res li {
     list-style-position: inside;
 }
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}

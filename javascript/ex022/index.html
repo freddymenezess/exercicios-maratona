@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Exercício 22</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Maior Valor</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="num">Adcione um número</label>
+                <input type="number" name="num" id="num" min="0" placeholder="Insira um número" required autofocus>
+            </div>
+            <div class="buttons flex">
+                <button type="button" id="btn">Adicionar</button>
+            </div>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+        const input = form["num"]
+        const btn = form.querySelector("#btn")
+        const array = []
+        
+        function adicionarNumero() {
+            const num = Number(form.num.value)
+
+            if (isNaN(num) || num < 0) {
+                alert("Por favor, insira um número válido.")
+                form.num.value = ""
+                form.num.focus()
+                return
+            }
+
+            array.push(num)
+            form.num.value = ""
+            form.num.focus()
+            input.setAttribute("placeholder", `Ainda pode adicionar ${20 - array.length} números`)
+        }
+        
+        function main() {
+            const maior = Math.max(...array)
+            res.innerHTML = `<p>O maior valor adicionado foi ${maior} <br> A sua posição é ${array.indexOf(maior)}</p>`
+        }
+
+        btn.addEventListener("click", () => {
+            if (array.length < 20) {
+                adicionarNumero()
+                return
+            }
+            mostrarDiv()
+            main()
+        })
+
+        form.addEventListener("submit", (ev) => {
+            ev.preventDefault()
+
+            if (array.length < 20) {
+                adicionarNumero()
+                return
+            }
+
+            mostrarDiv()
+            main()
+        })
+
+    </script>
+</body>
+</html>

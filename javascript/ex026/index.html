@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        body.flex main {
+            flex-basis: 800px;
+        }
+
+        #form .radio.flex {
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+
+        #form .radio.flex input {
+            width: auto;
+        }
+    </style>
+    <title>Exercício 26</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Listagem De Desconto Salarial e Percentagem</h1>
+        <form name="form" class="flex" autocomplete="off" id="form">
+            <div class="input-group radio flex">
+                <label for="mas">Masulino</label>
+                <input type="radio" name="sexo" id="mas" value="Masculino" required>
+                <label for="fem">Feminino</label>
+                <input type="radio" name="sexo" id="fem" value="Feminino" required>
+            </div>
+            <div class="input-group flex">
+                <label for="num">Número de aulas dadas</label>
+                <input type="number" name="num" id="num" placeholder="Insira o número de aulas dadas" required autofocus>
+            </div>
+            <div class="input-group flex">
+                <label for="num">Código</label>
+                <input type="number" name="codigo" id="codigo" placeholder="Insira o código do trabalhador ex: 99999" required autofocus>
+            </div>
+            <div class="buttons flex">
+                <button type="button" class="btn">Adicionar</button>
+            </div>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+        const btn = form.querySelector(".btn")
+        const valorAula = 30
+        const descontoHomens = 0.10
+        const descontoMulheres = 0.05
+        const funcionarios = []
+
+        function main() {
+            const sexo = form["sexo"].value
+            const aulas = Number(form["num"].value)
+            const codigo = Number(form["codigo"].value)
+            const salarioBruto = aulas * valorAula
+            const desconto = sexo === "mas" ? salarioBruto * descontoHomens : salarioBruto * descontoMulheres
+            const salarioLiquido = salarioBruto - desconto
+
+            funcionarios.push({ codigo, sexo, aulas, salarioBruto, desconto, salarioLiquido })
+
+            if (codigo === 99999) {
+                mostrarDiv()
+                let resultado = "<table><tr><th>Código</th><th>Sexo</th><th>Aulas</th><th>Salário Bruto</th><th>Desconto</th><th>Salário Líquido</th></tr>"
+                funcionarios.forEach(func => {
+                    resultado += `<tr>
+                        <td>${func.codigo}</td>
+                        <td>${func.sexo}</td>
+                        <td>${func.aulas}</td>
+                        <td>R$ ${func.salarioBruto.toFixed(2)}</td>
+                        <td>R$ ${func.desconto.toFixed(2)}</td>
+                        <td>R$ ${func.salarioLiquido.toFixed(2)}</td>
+                    </tr>`
+                })
+                resultado += "</table>"
+                res.innerHTML = resultado
+            }
+        }
+
+        btn.addEventListener("click", () => {
+            main()
+            form.reset()
+            form["sexo"].focus()
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        .res {
+            display: block;
+        }
+    </style>
+    <title>Exercício 27</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Somar 1 Até 100</h1>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+
+        const res = document.getElementById("mostrarRes")
+
+        let soma = 0
+        for (let i = 1; i <= 100; i++) {
+            soma += i
+        }
+        res.innerHTML = `<p>A soma dos números de 1 até 100 é ${soma}.</p>`
+
+    </script>
+</body>
+</html>

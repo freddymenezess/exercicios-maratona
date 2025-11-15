@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        .res {
+            display: block;
+        }
+    </style>
+    <title>Exercício 29</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Múltiplos de 7 Inferiores a 1000</h1>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+
+        const res = document.getElementById("mostrarRes")
+
+        let resultado = ""
+
+        for (let i = 7; i < 1000; i += 7) {
+            resultado += `${i} `
+        }
+        
+        res.innerHTML = `<p>${resultado}</p>`
+        
+
+    </script>
+</body>
+</html>

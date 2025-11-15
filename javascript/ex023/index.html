@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        .res p {
+            text-align: center;
+        }
+    </style>
+    <title>Exercício 23</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Triângulo Com Hashtags</h1>
+        <form name="form" class="flex">
+            <div class="input-group flex">
+                <label for="num">Base</label>
+                <input type="number" name="num" id="num" min="0" placeholder="Informe o tamanho da base" required autofocus>
+            </div>
+            <button type="submit" class="btn">Mostrar Resultado</button>
+        </form>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+        import mostrarDiv from "../style/main.js"
+
+        const form = document.forms["form"]
+        const res = document.getElementById("mostrarRes")
+
+        function main() {
+            const base = Number(form.num.value)
+            let resultado = ""
+
+            if (isNaN(base) || base <= 0) {
+                alert("Por favor, insira um número válido para a base.")
+                form.num.value = ""
+                form.num.focus()
+                return
+            }
+
+            for (let i = 1; i <= base; i++) {
+                resultado += "#".repeat(i) + "<br>"
+            }
+
+            res.innerHTML = `<p>${resultado}</p>`
+        }
+        
+        form.addEventListener("submit", (ev) => {
+            ev.preventDefault()
+            mostrarDiv()
+            main()
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        .res {
+            display: block;
+        }
+    </style>
+    <title>Exercício 28</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Soma Dos Positivos e Negativos</h1>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+
+        const res = document.getElementById("mostrarRes")
+        const nueros = Array.from({ length: 50 }, () => Math.floor(Math.random() * 201) - 100)
+
+        const somaPositivos = nueros.filter(num => num > 0).reduce((a, b) => a + b, 0)
+        const somaNegativos = nueros.filter(num => num < 0).reduce((a, b) => a + b, 0)
+
+        res.innerHTML = `
+            <p>Números gerados: ${nueros.join(", ")}</p>
+            <p>Soma dos números positivos: ${somaPositivos}</p>
+            <p>Soma dos números negativos: ${somaNegativos}</p>
+        `
+
+    </script>
+</body>
+</html>
