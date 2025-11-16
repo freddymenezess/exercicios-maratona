@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="../style/main.js" defer></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        .res {
+            display: block;
+        }
+    </style>
+    <title>Exercício 34</title>
+</head>
+<body class="flex">
+    <main>
+        <h1>Idade e Altura Média</h1>
+        <div class="res">
+            <h2>Resultado</h2>
+            <div id="mostrarRes"></div>
+        </div>
+    </main>
+
+    <script type="module" defer>
+
+        const res = document.getElementById("mostrarRes")
+
+        const alunos = Array.from({ length: 45 }, () => ({ 
+            idade: (Math.floor(Math.random() * 32) + 1),
+            altura: Number(((Math.random() * 1.20) + 1.20).toFixed(2))
+        }))
+
+        const alunosBaixaAltura = alunos.map(aluno => {
+            if (aluno.altura < 1.70) return aluno.idade
+            return
+        })
+        const somaIdade = alunosBaixaAltura.reduce((acc, idade) => acc + idade, 0)
+        const mediaIdade = alunosBaixaAltura.length > 0 ? 
+            parseInt(somaIdade / alunosBaixaAltura.length) : 0
+
+        const alunosAltaIdade = alunos.map(aluno => {
+            if (aluno.idade > 20) return aluno.altura
+            return
+        })
+        const somaAltura = alunosAltaIdade.reduce((acc, altura) => acc + altura, 0)
+        const mediaAltura = alunosAltaIdade.length > 0 ? 
+            parseInt(somaAltura / alunosAltaIdade.length) : 0
+
+        console.log(alunos)
+
+        res.innerHTML = `
+            <table>
+                <thead>
+                    <th>Idade Média</th>
+                    <th>Altura Média</th>    
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${mediaIdade}</td>
+                        <td>${mediaAltura}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        `
+
+    </script>
+</body>
+</html>
